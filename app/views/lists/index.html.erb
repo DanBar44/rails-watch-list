@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col">
+    <h3>All the lists</h3>
+
+    <%# <%= link_to "Action à attribuer", list_path, class: "btn btn-primary mb-3" %> 
+  </div>
+</div>
+
+<div class="row">
+  <% @lists.each do |list| %>
+    <div class="col-sm-12 col-md-4 mb-2">
+      <div class="card">
+        <%# <%= image_tag movie.poster_url, class: "card-img-top" %>
+
+        <div class="card-body">
+          <h5 class="card-title"><%= list.banner_url %><%= list.name %></h5>
+          <p class="card-text">
+            <%= list.movies.count %>
+          </p>
+          <a href="#" class="btn btn-outline-primary">Details</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+ <%= link_to "Ajouter une nouvelle liste", new_list_path %>
