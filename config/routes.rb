@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks, only: [:destroy]
-  # resources :movies, only: [:index, :show, :new, :create]
 # faire un rails routes -g lists => dans le terminal
 end
 

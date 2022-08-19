@@ -1,20 +1,33 @@
-<h1><%= @list.name %></h1>
-<%
-# <p><strong>Liste des films</strong></p>
-# <ul class="list-group">
-  <% @list.movies.each do |movie| %>
-    <%# <li class="list-group-item"> %>
-      <h1><%= movies.title %></h1>
-      <p><%= movies.overview %></p>
+<%= link_to "All lists", root_path, class: "btn btn-dark" %>
 
-    <%# </li> %>
-  <% end
-# <%# </ul> %>
-<%# <br>
-
-<div>
-  <%= link_to "Back to restaurants", restaurants_path %>
-<%# </div> %> %> %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.banner_url %>);">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+  </div>
+</div>
 
 
-<%# => voir si j'ai besoin d'un chemin list.bookmark.movies %>
+<div class="p-2">
+  <h2>Movies in this list</h2>
+  <div class="cards">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="card-movie">
+        <%= image_tag bookmark.movie.poster_url, alt: "alttext", width: 100 %>
+        <div class="card-movie-body">
+          <h2><%= bookmark.movie.title %></h2>
+          <p><%= bookmark.movie.overview %></p>
+        </div>
+
+        <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete} do %>
+          <i class="fa-solid fa-dumpster"></i>
+        <% end -%>
+      </div>
+    <% end %>
+
+    <%= link_to new_list_bookmark_path(@list) do %>
+      <div class="card-movie card-add-movie">
+        <h2><i class="fa-solid fa-circle-plus me-2"></i>Bookmark a movie</h2>
+      </div>
+    <% end -%>
+  </div>
+</div>
